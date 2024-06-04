@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import {axios} from "../../helper/http";
 import { HStack } from '@chakra-ui/react';
 import { OverviewTableTyped, DateRangePicker } from '../../components/UI';
-import FilterByDateInput from '../../components/Users/FilterByDateInput';
 import CardOne from '../../components/UI/cards/CardOne';
 import { useTranslation } from 'react-i18next';
 

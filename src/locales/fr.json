@@ -223,5 +223,8 @@
         "ongoing_deliveries": "Livraisons en cours",
         "terminated_deliveries": "Livraisons terminées",
         "home": "Accueil"
+    },
+    "conflictdelivery":{
+      "transactions_conflict_deliveries":"List of transactions"
     }
 }

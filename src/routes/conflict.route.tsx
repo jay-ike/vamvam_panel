@@ -2,9 +2,10 @@ import { RouteObject } from "react-router-dom";
 import { conflictLoader } from "../api/auth/loader";
 import ProfilePage from "../pages/Profile";
 import ChangePasswordPage from "../pages/auth/ChangePassword";
+import ConflictDeliveriesList from "../pages/admin/deliveries/ConflictDeliveriesList";
 
 const conflictRoute: RouteObject = {
-  path: "conflict",
+  path: "conflict-manager",
   loader: conflictLoader,
   children: [
     {
@@ -22,6 +23,10 @@ const conflictRoute: RouteObject = {
       path: "change-password",
       element: <ChangePasswordPage />,
     },
+    {
+      path: "conflict-deliveries/list",
+      element: <ConflictDeliveriesList />,
+    }
   ],
 };
 

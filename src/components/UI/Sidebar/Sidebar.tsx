@@ -95,6 +95,16 @@ function items(t: (val: string) => string) {
         },
         profileRoute,
     ];
+    result[USER_ROLE.conflictManager] = [
+        {
+            name: t("sidebar.conflict_deliveries"),
+            icon: <PiPackageThin />,
+            children: [
+                { link: "conflict-deliveries/list", name: t("sidebar.list") },
+            ],
+        },
+        profileRoute,
+    ];
     return result;
 }
 

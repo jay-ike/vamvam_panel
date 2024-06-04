@@ -9,6 +9,8 @@ import {
   OTPSettingsValue,
 } from "../../models/admin/settings";
 import UserData from "../../models/auth/user-data";
+import { GetConflictDeliveriesArgs } from "../../models/conflict_manager/conflict_manager";
+import ConflictDeliveryData from "../../models/deliveries/conflictdelivery";
 import Sponsor from "../../models/sponsors/sponsor";
 import SponsorData from "../../models/sponsors/sponsor-data";
 import TransactionData from "../../models/transactions/transaction-data";
@@ -354,6 +356,29 @@ async function getAllTransactions({ skip, pageToken,startDate,endDate,type}: Get
   };
 }
 
+async function getAllConflictDeliveries({ skip, pageToken }: GetConflictDeliveriesArgs) {
+  const urlQuery = `?maxPageSize=${PAGE_LIMIT}`
+    .concat(skip ? `&skip=${skip}` : "");
+
+  const response = await axios.get(
+    `/delivery/conflict/all-new/${urlQuery}`,
+    pageToken
+      ? {
+          headers: {
+            "page-token": pageToken,
+            Authorization: `Bearer ${getAuthToken()}`,
+          },
+        }
+      : {}
+  );
+  const data = response.data;
+  return {
+    conflictdeliveries: data.results as ConflictDeliveryData[],
+    refreshed: data.refreshed,
+    nextPageToken: data.nextPageToken,
+  }
+}
+
 export {
   updateSettingsData,
   getSettingsData,
@@ -372,5 +397,6 @@ export {
   editSponsor,
   deleteSponsor,
   getAllUserSponsored,
-  getAllTransactions
+  getAllTransactions,
+  getAllConflictDeliveries
 };

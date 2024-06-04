@@ -9,6 +9,7 @@ import bundleReducer from "./bundles/bundle-slice";
 import sponsorReducer from "./sponsors/sponsor-slice";
 import usersSponsorReducer from "./sponsors/users-sponsored/user-sponsored-slice";
 import transactionReducer from "./transactions/transaction-slice";
+import conflictdeliverynReducer from "./conflictdeliveries/conflictdelivery-slice";
 
 const store = configureStore({
   reducer: {
@@ -22,6 +23,7 @@ const store = configureStore({
     newRegistrations: newRegistrationReducer,
     settledRegistrations: settledRegistrationReducer,
     transactions: transactionReducer,
+    conflictdeliveries: conflictdeliverynReducer,
   },
 });
 

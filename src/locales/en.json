@@ -216,5 +216,8 @@
     "ongoing_deliveries":"Ongoing Deliveries",
     "terminated_deliveries":"Terminated Deliveries",
     "home":"Home"
+  },
+  "conflictdelivery":{
+    "transactions_conflict_deliveries":"List of transactions"
   }
 }
