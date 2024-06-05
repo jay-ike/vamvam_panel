@@ -12,5 +12,7 @@ export interface RegistrationData {
   lang?: string;
   contributorId?: string;
   registrationDate?: string;
+  validationDate?: string;
+  rejectionDate?: string;
   status?: "rejected" | "pending" | "active";
 }

@@ -127,7 +127,7 @@ const SettledRegistrationsPage = () => {
     t("users.last_name"),
     "Email",
     t("users.phone"),
-    t("registrations.registration_date"),
+    t("registrations.processing_date"),
     t("users.status"),
   ];
 
@@ -187,7 +187,11 @@ const SettledRegistrationsPage = () => {
                   </Td>
                   <Td>
                     <Text color="fg.muted">
-                      {formatDate(registration.registrationDate!)}
+                      {formatDate(
+                        registration.status === "active"
+                          ? registration.validationDate
+                          : registration.rejectionDate
+                      )}
                     </Text>
                   </Td>
                   <Td>

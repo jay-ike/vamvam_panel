@@ -6,6 +6,8 @@ const url = `${import.meta.env.VITE_API_URL}`;
 
 const token = localStorage.getItem(STORAGE_KEY.token);
 
+console.log("token", token);
+
 const socket = io(url, {
   auth: {
     authorization: `Bearer ${token}`,
