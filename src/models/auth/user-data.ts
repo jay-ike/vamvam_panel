@@ -5,7 +5,8 @@ export default interface UserData {
   gender: string;
   email?: string;
   phone?: string;
-  points?: string;
+  point?: number;
+  bonus?: number;
   age?: string;
   avatar?: string;
   firstName?: string;

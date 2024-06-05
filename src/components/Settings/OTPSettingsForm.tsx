@@ -61,6 +61,7 @@ const OTPSettingsForm: FC<{ ttl: number }> = ({ ttl }) => {
             </FormLabel>
             <Input
               type="number"
+              min={1}
               placeholder={t("settings.enter_ttl")}
               borderColor="gray.500"
               value={enteredttl === 0 ? "" : enteredttl}

@@ -121,6 +121,7 @@ const DeliverySettingsForm: FC<DeliverySettingsValue> = (props) => {
                 </FormLabel>
                 <Input
                   type="number"
+                  min={1}
                   placeholder={t("settings.enter_ttl_seconds")}
                   borderColor="gray.500"
                   value={ttl === 0 ? "" : ttl}
@@ -140,6 +141,7 @@ const DeliverySettingsForm: FC<DeliverySettingsValue> = (props) => {
                 </FormLabel>
                 <Input
                   type="number"
+                  min={1}
                   placeholder={t("settings.enter_search_radius")}
                   borderColor="gray.500"
                   value={searchRadius === 0 ? "" : searchRadius}

@@ -2,7 +2,17 @@ import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../../store";
 import { useCallback, useEffect } from "react";
 import { PAGE_LIMIT } from "../../helper";
-import { Table, Tbody, Td, Text, Thead, Th, Tr, Badge } from "@chakra-ui/react";
+import {
+  Table,
+  Tbody,
+  Td,
+  Text,
+  Thead,
+  Th,
+  Tr,
+  Badge,
+  Image,
+} from "@chakra-ui/react";
 import { CircularLoader, OverviewTableTyped } from "../../components/UI";
 import { useTranslation } from "react-i18next";
 import { settledRegistrationActions } from "../../store/registration/settled/slice";
@@ -11,6 +21,7 @@ import { formatDate } from "../../helper/utils";
 import { useNavigate } from "react-router-dom";
 import { fetchSettledRegistrations } from "../../store/registration/settled/actions";
 import SettledFilters from "../../components/registrations/SettledFilter";
+import emptyImage from "../../images/empty-registration.png";
 
 const SettledRegistrationsPage = () => {
   const { t } = useTranslation();
@@ -138,62 +149,66 @@ const SettledRegistrationsPage = () => {
           />
         }
       >
-        <Table>
-          <Thead>
-            <Tr>
-              {tableColumns.map((colName: any, index: number) => (
-                <Th key={index}>{colName}</Th>
-              ))}
-            </Tr>
-          </Thead>
-          <Tbody>
-            {displayedSettledRegistrations.map((registration) => (
-              <Tr
-                key={registration.id}
-                _hover={{ cursor: "pointer" }}
-                onClick={() => handleViewDetails(registration)}
-              >
-                <Td>
-                  <Text fontWeight="medium">{registration.firstName}</Text>
-                </Td>
-                <Td>
-                  <Text fontWeight="medium" color="fg.muted">
-                    {registration.lastName}
-                  </Text>
-                </Td>
-                <Td>
-                  <Text fontWeight="medium" color="fg.muted">
-                    {registration.email}
-                  </Text>
-                </Td>
-                <Td>
-                  <Text fontWeight="medium" color="fg.muted">
-                    {registration.phoneNumber}
-                  </Text>
-                </Td>
-                <Td>
-                  <Text color="fg.muted">
-                    {formatDate(registration.registrationDate!)}
-                  </Text>
-                </Td>
-                <Td>
-                  <Badge
-                    size="sm"
-                    colorScheme={
-                      registration.status === "active"
-                        ? "green"
-                        : registration.status === "pending"
-                        ? "blue"
-                        : "red"
-                    }
-                  >
-                    {registration.status}
-                  </Badge>
-                </Td>
+        {displayedSettledRegistrations.length === 0 ? (
+          <Image margin="auto" src={emptyImage} />
+        ) : (
+          <Table>
+            <Thead>
+              <Tr>
+                {tableColumns.map((colName: any, index: number) => (
+                  <Th key={index}>{colName}</Th>
+                ))}
               </Tr>
-            ))}
-          </Tbody>
-        </Table>
+            </Thead>
+            <Tbody>
+              {displayedSettledRegistrations.map((registration) => (
+                <Tr
+                  key={registration.id}
+                  _hover={{ cursor: "pointer" }}
+                  onClick={() => handleViewDetails(registration)}
+                >
+                  <Td>
+                    <Text fontWeight="medium">{registration.firstName}</Text>
+                  </Td>
+                  <Td>
+                    <Text fontWeight="medium" color="fg.muted">
+                      {registration.lastName}
+                    </Text>
+                  </Td>
+                  <Td>
+                    <Text fontWeight="medium" color="fg.muted">
+                      {registration.email}
+                    </Text>
+                  </Td>
+                  <Td>
+                    <Text fontWeight="medium" color="fg.muted">
+                      {registration.phoneNumber}
+                    </Text>
+                  </Td>
+                  <Td>
+                    <Text color="fg.muted">
+                      {formatDate(registration.registrationDate!)}
+                    </Text>
+                  </Td>
+                  <Td>
+                    <Badge
+                      size="sm"
+                      colorScheme={
+                        registration.status === "active"
+                          ? "green"
+                          : registration.status === "pending"
+                          ? "blue"
+                          : "red"
+                      }
+                    >
+                      {registration.status}
+                    </Badge>
+                  </Td>
+                </Tr>
+              ))}
+            </Tbody>
+          </Table>
+        )}
       </OverviewTableTyped>
     </>
   );

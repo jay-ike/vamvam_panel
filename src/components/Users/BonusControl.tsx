@@ -4,6 +4,9 @@ import toast from "react-hot-toast";
 import { updateBonus } from "../../api/admin/http";
 import { useMutation } from "@tanstack/react-query";
 import { LoadingButton } from "../UI";
+import { useDispatch } from "react-redux";
+import { AppDispatch } from "../../store";
+import { userActions } from "../../store/users/user-slice";
 
 type Props = {
   onClose: VoidFunction;
@@ -14,12 +17,19 @@ const BonusControl: React.FC<Props> = ({ onClose, userId }) => {
   const [points, setPoints] = useState<number>(0);
   const [action, setAction] = useState<"add" | "remove">("add");
   const isAdding = action === "add";
+  const dispatch = useDispatch<AppDispatch>();
 
   const { mutate, isPending } = useMutation({
     mutationFn: updateBonus,
     onSuccess: () => {
       toast.success(
         isAdding ? "Bonus added successfully" : "Bonus removed successfully"
+      );
+      dispatch(
+        userActions.changeUserBonus({
+          id: userId,
+          bonus: points * (action === "add" ? 1 : -1),
+        })
       );
       onClose();
     },

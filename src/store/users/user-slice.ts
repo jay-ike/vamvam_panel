@@ -63,6 +63,14 @@ const userSlice = createSlice({
         state.users[userIndex].status = status;
       }
     },
+    changeUserBonus(state, action) {
+      const { id, bonus } = action.payload;
+      const userIndex = state.users.findIndex((user) => user.id === id);
+
+      if (userIndex !== -1) {
+        state.users[userIndex].bonus += bonus;
+      }
+    },
     emptyState(state) {
       state.users = [];
       state.pageToken = undefined;

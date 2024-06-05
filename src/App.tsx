@@ -17,6 +17,9 @@ import { fetchUserData } from "./store/profile/profile-actions";
 import { AppDispatch, RootState } from "./store";
 import CircularLoader from "./components/UI/CircularLoader";
 import { getAuthToken } from "./helper/utils";
+import { handleIncomingRegistration } from "./helper/socket";
+import { notificationActions } from "./store/notifications/notification-slice";
+import NotificationData from "./models/common/notification";
 
 const customTheme = extendTheme(
   {
@@ -39,6 +42,24 @@ function App() {
     (state: RootState) => state.profile
   );
 
+  const handleSocketEvents = () => {
+    handleIncomingRegistration((data) => {
+      const notification: NotificationData = {
+        data,
+        date: new Date(),
+        url: `/registrations/new/${data.id}`,
+        title: "New registration request",
+        description:
+          "A new driver has registered on the platform. Please check the registration page for more details and validate his account.",
+        id: data.id,
+      };
+      console.log("new registration notification", notification);
+      dispatch(notificationActions.addNotification(notification));
+    });
+
+    // handle conflict notification...
+  };
+
   useThemeMode();
 
   useEffect(() => {
@@ -49,6 +70,7 @@ function App() {
   useEffect(() => {
     if (!userData && getAuthToken()) {
       dispatch(fetchUserData());
+      handleSocketEvents();
     }
   }, [dispatch, userData]);
 

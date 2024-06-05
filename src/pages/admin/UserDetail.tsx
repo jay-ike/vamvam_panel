@@ -74,7 +74,7 @@ const UserDetailPage: FC<Props> = ({ isOpen, onClose, user }) => {
           <ModalBody p={8}>
             <VStack spacing={8} align="start">
               <Avatar src={getFilePath(user.avatar as string)} boxSize="32" />
-              <HStack w="full" justify="space-between">
+              <HStack w="full" justify="space-between" align="start">
                 <VStack align="start">
                   <HStack>
                     <Text fontSize="sm" as="b">
@@ -100,6 +100,12 @@ const UserDetailPage: FC<Props> = ({ isOpen, onClose, user }) => {
                     </Text>
                     <Text>{toCapitalize(user.role ?? "--")}</Text>
                   </HStack>
+                  {user.role === "driver" && <HStack>
+                    <Text fontSize="sm" as="b">
+                      Points:
+                    </Text>
+                    <Text>{user.point}</Text>
+                  </HStack>}
                 </VStack>
                 <VStack align="start">
                   <HStack>
@@ -133,6 +139,12 @@ const UserDetailPage: FC<Props> = ({ isOpen, onClose, user }) => {
                       </Badge>
                     </HStack>
                   </HStack>
+                  {user.role === "driver" &&  <HStack>
+                    <Text fontSize="sm" as="b">
+                      Bonus:
+                    </Text>
+                    <Text>{user.bonus}</Text>
+                  </HStack>}
                 </VStack>
               </HStack>
               {user.role === "driver" && (

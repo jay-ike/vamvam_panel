@@ -12,6 +12,7 @@ import {
   Tr,
   HStack,
   Badge,
+  Image,
 } from "@chakra-ui/react";
 import { CircularLoader, OverviewTableTyped } from "../../components/UI";
 import { useTranslation } from "react-i18next";
@@ -21,6 +22,7 @@ import { RegistrationData } from "../../models/registrations/registration-data";
 import { formatDate } from "../../helper/utils";
 import { useNavigate } from "react-router-dom";
 import SearchInput from "../../components/registrations/SearchInput";
+import emptyImage from "../../images/empty-registration.png";
 
 const NewRegistrationsPage = () => {
   const { t } = useTranslation();
@@ -118,58 +120,64 @@ const NewRegistrationsPage = () => {
           </HStack>
         }
       >
-        <Table>
-          <Thead>
-            <Tr>
-              {tableColumns.map((colName: any, index: number) => (
-                <Th key={index}>{colName}</Th>
-              ))}
-            </Tr>
-          </Thead>
-          <Tbody>
-            {displayedNewRegistrations.map((registration) => (
-              <Tr
-                key={registration.id}
-                _hover={{ cursor: "pointer" }}
-                onClick={() => handleViewDetails(registration)}
-              >
-                <Td>
-                  <Text fontWeight="medium">{registration.firstName}</Text>
-                </Td>
-                <Td>
-                  <Text fontWeight="medium" color="fg.muted">
-                    {registration.lastName}
-                  </Text>
-                </Td>
-                <Td>
-                  <Text fontWeight="medium" color="fg.muted">
-                    {registration.email}
-                  </Text>
-                </Td>
-                <Td>
-                  <Text fontWeight="medium" color="fg.muted">
-                    {registration.phoneNumber}
-                  </Text>
-                </Td>
-                <Td>
-                  <Text color="fg.muted">
-                    {formatDate(registration.registrationDate!)}
-                  </Text>
-                </Td>
-                <Td>
-                  <Badge
-                    size="sm"
-                    colorScheme={registration.contributorId ? "orange" : "blue"}
-                  >
-                    {registration.contributorId
-                      ? "reviewing"
-                      : registration.status}
-                  </Badge>
-                </Td>
+        {totalnewRegistrations.length === 0 ? (
+          <Image margin="auto" src={emptyImage} />
+        ) : (
+          <Table>
+            <Thead>
+              <Tr>
+                {tableColumns.map((colName: any, index: number) => (
+                  <Th key={index}>{colName}</Th>
+                ))}
               </Tr>
-            ))}
-          </Tbody>
-        </Table>
+            </Thead>
+            <Tbody>
+              {displayedNewRegistrations.map((registration) => (
+                <Tr
+                  key={registration.id}
+                  _hover={{ cursor: "pointer" }}
+                  onClick={() => handleViewDetails(registration)}
+                >
+                  <Td>
+                    <Text fontWeight="medium">{registration.firstName}</Text>
+                  </Td>
+                  <Td>
+                    <Text fontWeight="medium" color="fg.muted">
+                      {registration.lastName}
+                    </Text>
+                  </Td>
+                  <Td>
+                    <Text fontWeight="medium" color="fg.muted">
+                      {registration.email}
+                    </Text>
+                  </Td>
+                  <Td>
+                    <Text fontWeight="medium" color="fg.muted">
+                      {registration.phoneNumber}
+                    </Text>
+                  </Td>
+                  <Td>
+                    <Text color="fg.muted">
+                      {formatDate(registration.registrationDate!)}
+                    </Text>
+                  </Td>
+                  <Td>
+                    <Badge
+                      size="sm"
+                      colorScheme={
+                        registration.contributorId ? "orange" : "blue"
+                      }
+                    >
+                      {registration.contributorId
+                        ? "reviewing"
+                        : registration.status}
+                    </Badge>
+                  </Td>
+                </Tr>
+              ))}
+            </Tbody>
+          </Table>
+        )}
       </OverviewTableTyped>
     </>
   );
