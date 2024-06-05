@@ -20,6 +20,7 @@ import { getAuthToken } from "./helper/utils";
 import { handleIncomingRegistration } from "./helper/socket";
 import { notificationActions } from "./store/notifications/notification-slice";
 import NotificationData from "./models/common/notification";
+import { useTranslation } from "react-i18next";
 
 const customTheme = extendTheme(
   {
@@ -37,6 +38,7 @@ const customTheme = extendTheme(
   })
 );
 function App() {
+  const { t } = useTranslation();
   const dispatch = useDispatch<AppDispatch>();
   const { error, loading, userData } = useSelector(
     (state: RootState) => state.profile
@@ -48,9 +50,8 @@ function App() {
         data,
         date: new Date(),
         url: `/registrations/new/${data.id}`,
-        title: "New registration request",
-        description:
-          "A new driver has registered on the platform. Please check the registration page for more details and validate his account.",
+        title: t("notifications.new_registration_title"),
+        description: t("notifications.new_registration_description"),
         id: data.id,
       };
       console.log("new registration notification", notification);

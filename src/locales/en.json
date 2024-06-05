@@ -49,6 +49,11 @@
     "edit_profile": "Edit my profile",
     "change_password": "Change Password"
   },
+    "notifications": {
+      "no_notification": "No notifications for the moment. Once you have a notification, it will appear here.",
+      "new_registration_title": "New registration request",
+      "new_registration_description": "A new driver has registered on the platform. Please check the registration page for more details and validate his account."
+    },
   "settings": {
     "title": "Settings",
     "new": "New",

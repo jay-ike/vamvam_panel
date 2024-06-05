@@ -15,8 +15,8 @@ import { useMutation } from "@tanstack/react-query";
 import toast from "react-hot-toast";
 import UploadFileBox from "../../components/registrations/UploadFileBox";
 import {
-  // createInternalDriver,
-  createRegistration,
+  createInternalDriver,
+  // createRegistration,
 } from "../../api/registration/http";
 
 function CreateInternalDriverPage() {
@@ -24,7 +24,7 @@ function CreateInternalDriverPage() {
   const [file, setFile] = useState<File>();
 
   const { mutate, isPending } = useMutation({
-    mutationFn: createRegistration,
+    mutationFn: createInternalDriver,
     onSuccess: async () => {
       toast.success(t("registrations.driver_created_success"));
     },

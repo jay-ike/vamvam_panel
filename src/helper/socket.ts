@@ -2,7 +2,7 @@ import io from "socket.io-client";
 import { STORAGE_KEY } from "./enums";
 import { RegistrationData } from "../models/registrations/registration-data";
 
-const url = `${import.meta.env.VITE_API_URL}/delivery`;
+const url = `${import.meta.env.VITE_API_URL}`;
 
 const token = localStorage.getItem(STORAGE_KEY.token);
 
@@ -10,6 +10,7 @@ const socket = io(url, {
   auth: {
     authorization: `Bearer ${token}`,
   },
+  // transports: ["websocket"],
 });
 
 function connectSocketIO() {
