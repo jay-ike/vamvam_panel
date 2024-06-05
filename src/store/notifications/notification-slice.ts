@@ -22,6 +22,11 @@ const notificationSlice = createSlice({
     readNotifications(state) {
       state.newNotification = false;
     },
+    deleteNotification(state, action) {
+      state.notifications = state.notifications.filter(
+        (notification) => notification.id !== action.payload
+      );
+    },
   },
 });
 

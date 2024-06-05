@@ -42,16 +42,21 @@ const DropdownNotification = () => {
     return () => document.removeEventListener("keydown", keyHandler);
   });
 
-  const handleNotificationClick = () => {
+  const handleNotificationsClick = () => {
     setDropdownOpen(!dropdownOpen);
     dispatch(notificationActions.readNotifications());
+  };
+
+  const handleNotificationClick = (id: string) => {
+    setDropdownOpen(!dropdownOpen);
+    dispatch(notificationActions.deleteNotification(id));
   };
 
   return (
     <li className="relative">
       <Link
         ref={trigger}
-        onClick={handleNotificationClick}
+        onClick={handleNotificationsClick}
         to="#"
         className="relative flex h-8.5 w-8.5 items-center justify-center rounded-full border-[0.5px] border-stroke bg-gray hover:text-primary dark:border-strokedark dark:bg-meta-4 dark:text-white"
       >
@@ -77,7 +82,11 @@ const DropdownNotification = () => {
         ) : (
           <ul className="flex h-auto flex-col overflow-y-auto">
             {notifications.map((notification) => (
-              <NotificationItem {...notification} />
+              <NotificationItem
+                key={notification.id}
+                onNotificationClick={handleNotificationClick}
+                {...notification}
+              />
             ))}
           </ul>
         )}
@@ -112,18 +121,26 @@ const NotificationCircle = () => {
   );
 };
 
-const NotificationItem = ({ title, description, date, url }) => {
+const NotificationItem = ({
+  title,
+  description,
+  date,
+  url,
+  data,
+  onNotificationClick,
+}) => {
   return (
     <li>
       <Link
-        className="flex flex-col gap-2.5 border-t border-stroke px-4.5 py-3 hover:bg-gray-2 dark:border-strokedark dark:hover:bg-meta-4"
+        onClick={onNotificationClick}
         to={url}
+        state={data}
+        className="flex flex-col gap-2.5 border-t border-stroke px-4.5 py-3 hover:bg-gray-2 dark:border-strokedark dark:hover:bg-meta-4"
       >
         <p className="text-sm">
           <span className="text-black dark:text-white">{title}</span>{" "}
           {description}
         </p>
-
         <p className="text-xs">{formatDate(date)}</p>
       </Link>
     </li>
