@@ -22,7 +22,7 @@ const initialState: DeliveryState = {
     deliveries: [],
     loading: false,
     paginationCompleted: false,
-    pageSize: 1,
+    pageSize: 10,
     refreshed: false,
 };
 
@@ -118,7 +118,7 @@ export function fetchDeliveries(arg: ListingArgs) {
     return async function deliveryFetcher(dispatch: Dispatch) {
         const isInitial = !arg.skip && !arg.pageToken;
         let results: any;
-        let query = parseParams(Object.assign({ maxPageSize: 1 }, arg), listingKeys);
+        let query = parseParams(arg, listingKeys);
         try {
             setLoading(dispatch, isInitial, true);
             results = await getAllDeliveries({ pageToken: arg.pageToken, query });

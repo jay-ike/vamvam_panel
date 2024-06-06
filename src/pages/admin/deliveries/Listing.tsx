@@ -20,12 +20,12 @@ import {
 } from "@chakra-ui/react";
 import { useDispatch, useSelector } from "react-redux";
 import { useTranslation } from "react-i18next";
-import { AppDispatch, RootState } from "../../store";
-import { applyFilter, fetchDeliveries, listingActions } from "../../store/deliveries/listing.ts";
-import { DELIVERY_STATUS, DELIVERY_SCHEME } from "../../helper/enums.ts";
+import { AppDispatch, RootState } from "../../../store";
+import { applyFilter, fetchDeliveries, listingActions } from "../../../store/deliveries/listing.ts";
+import { DELIVERY_STATUS, DELIVERY_SCHEME } from "../../../helper/enums.ts";
 import { useEffect, useState } from "react";
-import { DeliveryData, DeliveryFilter } from "../../models/delivery.ts";
-import { getFormatter } from "../../helper/utils.ts";
+import { DeliveryData, DeliveryFilter } from "../../../models/delivery.ts";
+import { getFormatter } from "../../../helper/utils.ts";
 import {
     DateRangePicker,
     Location,
@@ -34,7 +34,7 @@ import {
     Ratings,
     Sprite,
     UserAvatar
-} from "../../components/UI";
+} from "../../../components/UI";
 
 const formatter = getFormatter();
 const statusMap = Object.assign({}, DELIVERY_STATUS);
@@ -169,7 +169,7 @@ function MemberTable(props: any) {
 function Deliveries() {
     const dispatch = useDispatch<AppDispatch>();
     const state = useSelector((rootState: RootState) => rootState.deliveries);
-    const {t} = useTranslation();
+    const { t } = useTranslation();
     const headers = ["client", t("users.status"), t("delivery.departure"), t("delivery.destination"), ""];
     const shownDeliveries = state.deliveries.slice(
         state.pageSize * (state.currentPage - 1),
@@ -179,7 +179,7 @@ function Deliveries() {
         state.currentPage < Math.ceil(state.deliveries.length / state.pageSize)
     );
     useEffect(function() {
-        dispatch(fetchDeliveries({}));
+        dispatch(fetchDeliveries({maxPageSize: state.pageSize}));
         return function() {
             dispatch(listingActions.emptyState());
         }
@@ -195,8 +195,9 @@ function Deliveries() {
         }
         dispatch(applyFilter(filter));
         dispatch(fetchDeliveries({
-            status: filter.status ?? state.filter?.status,
             from: filter.from ?? state.filter?.from,
+            maxPageSize: state.pageSize,
+            status: filter.status ?? state.filter?.status,
             to: filter.to ?? state.filter?.to
         }));
     }
@@ -204,10 +205,11 @@ function Deliveries() {
     function handleNextPage() {
         if (state.deliveries.length === state.pageSize * state.currentPage) {
             dispatch(fetchDeliveries({
-                pageToken: state.pageToken,
-                status: state.filter?.status,
                 from: state.filter?.from,
+                maxPageSize: state.pageSize,
+                pageToken: state.pageToken,
                 skip: state.refreshed ? state.deliveries.length : undefined,
+                status: state.filter?.status,
                 to: state.filter?.to
             }));
         } else {

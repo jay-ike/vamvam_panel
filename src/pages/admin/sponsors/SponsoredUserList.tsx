@@ -24,7 +24,7 @@ const SponsoredUsersPage = () => {
   const { t } = useTranslation();
   const dispatch = useDispatch<AppDispatch>();
   const params= useParams()
-  
+
   const {
     initialReqSent,
     usersSponsored: totalUsers,
@@ -77,7 +77,6 @@ const SponsoredUsersPage = () => {
   }
 
   function handleViewDetails(user: UserData) {
-    return
     navigate('/admin/edit-user',{state:user})
   }
 

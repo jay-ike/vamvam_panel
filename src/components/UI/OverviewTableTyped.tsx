@@ -99,8 +99,9 @@ const OverviewTableTyped: FC<Props> = (props) => {
 };
 
 export function Sprite(props: SpriteProps) {
+    const size = props.size ?? 24;
     return (
-        <svg width={props.size ?? 24} height={props.size ?? 24} {...(props.options ?? {})}>
+        <svg width={size} height={size} {...(props.options ?? {})}>
             <title>{props.title}</title>
             <use href={sprite + "#" + props.name} />
         </svg>

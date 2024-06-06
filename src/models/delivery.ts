@@ -44,6 +44,7 @@ export interface DeliveryFilter {
 export interface ListingArgs extends DeliveryFilter {
     pageToken?: string;
     skip?:number;
+    maxPageSize: number;
 }
 
 

@@ -43,7 +43,8 @@ function items(t: (val: string) => string) {
             name: t("sidebar.deliveries"),
             icon: <PiPackageThin />,
             children: [
-                { name: t("sidebar.list"), link: "deliveries" }
+                { name: t("sidebar.list"), link: "deliveries" },
+                { name: t("delivery.visualize_drivers"), link: "locate-drivers" }
             ]
         },
         {

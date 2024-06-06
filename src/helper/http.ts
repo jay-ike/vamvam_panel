@@ -20,17 +20,6 @@ axiosInstance.interceptors.request.use(function (config) {
   }
   return config;
 });
-
-// axiosInstance.interceptors.response.use(function (config) {
-//   console.log("Token expired, please login again", config.status);
-
-//   if (config.status == 401) {
-//     localStorage.removeItem("token");
-//     console.log("Token expired, please login again");
-//   }
-//   return config;
-// });
-
 function mockApiCall(shouldSucceed = true) {
   return new Promise((resolve, reject) => {
     setTimeout(() => {

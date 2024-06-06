@@ -25,11 +25,15 @@
   },
   "delivery": {
       "departure": "departure",
-      "destination": "destination",
-      "listing": "Delivery List",
-      "status_filter": "Filter by Status",
-      "listing_empty_header": "",
-      "listing_empty_content": ""
+        "destination": "destination",
+        "listing": "Delivery List",
+        "status_filter": "Filter by Status",
+        "listing_empty_header": "no delivery available",
+        "listing_empty_content": "Once a client will request a delivery you will be able to get its informations here",
+        "driver_details": "Driver Details",
+        "internal": "internal",
+        "visualize_drivers": "Localize the drivers",
+        "map_heading": "Drivers Location"
   },
   "loading": "Loading",
   "next": "Next",
@@ -37,7 +41,7 @@
   "previous": "Previous",
   "result": "Result",
   "showing": "Showing",
-  "to": "à",
+  "to": "to",
   "cancel": "Cancel",
   "confirm": "Confirm",
   "close": "Close",
@@ -222,5 +226,7 @@
     "ongoing_deliveries":"Ongoing Deliveries",
     "terminated_deliveries":"Terminated Deliveries",
     "home":"Home"
-  }
+  },
+  "available": "available",
+  "busy": "busy"
 }

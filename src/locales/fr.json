@@ -29,7 +29,11 @@
         "status_filter": "Filter par Status",
         "listing": "Liste Des Livraisons",
         "listing_empty_header": "Aucune livraison disponible",
-        "listing_empty_content": "Une fois qu'un client fera une demande de livraison vous pourrez consulter les informations ici."
+        "listing_empty_content": "Une fois qu'un client fera une demande de livraison vous pourrez consulter les informations ici.",
+        "driver_details": "Details Du Livreur",
+        "internal": "interne",
+        "visualize_drivers": "Localiser les livreurs",
+        "map_heading": "Localisation des Livreurs"
     },
     "loading": "En cours",
     "of": "de",
@@ -230,5 +234,7 @@
         "ongoing_deliveries": "Livraisons en cours",
         "terminated_deliveries": "Livraisons terminées",
         "home": "Accueil"
-    }
+    },
+    "available": "disponible",
+    "busy": "indisponible"
 }

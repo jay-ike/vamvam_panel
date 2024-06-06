@@ -10,11 +10,13 @@ import sponsorReducer from "./sponsors/sponsor-slice";
 import usersSponsorReducer from "./sponsors/users-sponsored/user-sponsored-slice";
 import transactionReducer from "./transactions/transaction-slice";
 import notificationSlice from "./notifications/notification-slice";
+import driverSlice from "./users/drivers-listing";
 
 const store = configureStore({
   reducer: {
     notifications: notificationSlice,
     deliveries: listingSlice,
+    drivers: driverSlice,
     profile: profileReducer,
     ui: uiReducer,
     users: userReducer,

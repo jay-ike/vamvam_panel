@@ -80,7 +80,6 @@ const TransactionsPage = () => {
   }
 
   function handleViewDetails(transaction: TransactionData) {
-    return;
     navigate('/admin/transaction/'+transaction.id)
   }
 

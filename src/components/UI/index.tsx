@@ -13,6 +13,7 @@ import SidebarLinkGroup from "./Sidebar/SidebarLinkGroup.tsx";
 import Sidebar from "./Sidebar/Sidebar.tsx";
 import LoadingButton from "./LoadingButton.tsx";
 import LangSwitcher from "./LangSwitcher.tsx";
+import GoogleMap from "./GMap.tsx";
 import OverviewTableTyped, { Sprite, OptionSelector, Ratings, Location, UserAvatar } from "./OverviewTableTyped.tsx";
 
 type Props = {
@@ -46,6 +47,7 @@ export {
     DateRangePicker,
     DropdownNotification,
     DropdownUser,
+    GoogleMap,
     Layout,
     LinearLoader,
     Location,

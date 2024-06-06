@@ -74,7 +74,6 @@ const SponsorsPage = () => {
   }
 
   function handleViewDetails(sponsor: SponsorData) {
-    // navigate('/admin/edit-sponsor',{state:sponsor})
     navigate('/admin/sponsor/'+sponsor.sponsor.id)
   }
 
